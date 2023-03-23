@@ -9,7 +9,7 @@ export default class Counter extends Phaser.Physics.Arcade.Sprite {
 		this.setOrigin(0, 0);
         this.setDisplayOrigin(0, 0);
 		this.setScale(1.1);
-		this.setDepth(this.y + 160);	
+		this.setDepth(this.y + 200);	
 
         this.refreshBody();
 	}

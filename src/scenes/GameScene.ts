@@ -1,8 +1,11 @@
 import Phaser, { GameObjects } from 'phaser'
+
 import Counter from '~/objects/Counter';
 import Penguin from '~/objects/Penguin';
 import Table from '~/objects/Table';
 import Wall from '~/objects/Wall';
+import Food from '~/objects/Food';
+
 import UIScene from './UIScene';
 
 export default class GameScene extends Phaser.Scene {
@@ -12,6 +15,7 @@ export default class GameScene extends Phaser.Scene {
 	wall!: Wall;
 	counter!: Counter;
 	tables!: Table[];
+	food!: Food;
 	
 	constructor() {
 		super({key: "GameScene"});
@@ -43,11 +47,18 @@ export default class GameScene extends Phaser.Scene {
 
 		this.load.image("table", "table4.png");
 		this.load.image("tile", "tileplanks.png");
-		this.load.image("food1", "foods/hot_cocoa_mix.png");
-		this.load.image("food2", "foods/sliced_bread_p.png");
-		this.load.image("food3", "foods/potatochip_green.png");
-		this.load.image("food4", "foods/potatochip_blue.png");
-		this.load.image("food5", "foods/potatochip_yellow.png");
+		// this.load.image("food1", "foods/hot_cocoa_mix.png");
+		// this.load.image("food2", "foods/sliced_bread.png");
+		// this.load.image("food3", "foods/potatochip_green.png");
+		// this.load.image("food4", "foods/potatochip_blue.png");
+		// this.load.image("food5", "foods/potatochip_yellow.png");
+
+		this.load.image("food1", "Ghostpixxells_pixelfood/06_apple_pie_dish.png");
+		this.load.image("food2", "Ghostpixxells_pixelfood/43_eggtart_dish.png");
+		this.load.image("food3", "Ghostpixxells_pixelfood/16_burger_dish.png");
+		this.load.image("food4", "Ghostpixxells_pixelfood/33_curry_dish.png");
+		this.load.image("food5", "Ghostpixxells_pixelfood/37_dumplings_dish.png");
+
 		this.load.image("counter", "counter.png");
 		this.load.image("wall", "wall.png");
     }
@@ -58,8 +69,9 @@ export default class GameScene extends Phaser.Scene {
     	this.scene.bringToTop('UIScene');
 
 		this.physics.world.setBounds(0, 64, width, height - 64);
-		const tilesprite = this.add.tileSprite(0, 0, width, height, "tile").setScale(2);
+		this.add.tileSprite(0, 0, width, height, "tile").setScale(2);
 
+		this.food = new Food(this, 220, 260);
 		this.wall = new Wall(this, 0, 0);
 		this.counter = new Counter(this, 200, 100);
 
