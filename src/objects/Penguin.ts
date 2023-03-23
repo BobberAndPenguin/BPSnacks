@@ -1,4 +1,4 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser';
 import GameScene from '~/scenes/GameScene';
 
 export default class Penguin extends Phaser.Physics.Arcade.Sprite {
@@ -94,12 +94,14 @@ export default class Penguin extends Phaser.Physics.Arcade.Sprite {
 	}
 
 	dropItem() : void {
-		if (this.holding) {
-			this.holding.dropped();
-			this.holding = null;
-
-			(this.scene as GameScene).incrementScore();
+		if (!this.holding) {
+			return;
 		}
+
+		this.holding.dropped();
+		this.holding = null;
+		(this.scene as GameScene).incrementScore();
+		
 	}
 
 	moveTo(x: number, y: number) : void {

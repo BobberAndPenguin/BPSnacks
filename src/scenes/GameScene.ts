@@ -65,12 +65,12 @@ export default class GameScene extends Phaser.Scene {
 
 		this.tables = [];
 
-		this.tables.push(new Table(this, width / 2, height * 0.75));
+		this.tables.push(new Table(this, width / 2, height * 0.75 - 200));
 		this.tables.push(new Table(this, width / 2 + 200, height * 0.75));
 
 		this.penguin = new Penguin(this, 100, 300);
 
-		this.input.on('pointerdown', this.onPointerDown, this);
+		//this.input.on('pointerdown', this.onPointerDown, this);
 
 		this.physics.add.collider(this.penguin, this.wall, (penguin : GameObjects.GameObject, wall : GameObjects.GameObject) => {
 			(penguin as Penguin).cancelMovement();
@@ -97,9 +97,9 @@ export default class GameScene extends Phaser.Scene {
     }
 
     update(time: number, delta: number): void {
-        // if (this.input.mousePointer.leftButtonDown()) {
-		// 	this.onPointerDown(this.input.mousePointer);
-		// }
+        if (this.input.mousePointer.leftButtonDown()) {
+			this.onPointerDown(this.input.mousePointer);
+		}
 
 		this.penguin.update();
     }

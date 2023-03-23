@@ -1,4 +1,4 @@
-import Phaser from 'phaser'
+import Phaser from 'phaser';
 import GameScene from '~/scenes/GameScene';
 
 export default class Wall extends Phaser.Physics.Arcade.Sprite {
